@@ -1,0 +1,78 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+const { pageTitle = 'Home Page', centerTitle = false } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      (() => {
+        const storageKey = 'theme';
+        const dark = 'dark';
+        const light = 'light';
+        const system = 'system';
+        let setting = system;
+
+        try {
+          const savedTheme = localStorage.getItem(storageKey);
+          if (savedTheme === dark || savedTheme === light || savedTheme === system) {
+            setting = savedTheme;
+          }
+        } catch {}
+
+        const theme =
+          setting === dark || (setting === system && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ? dark
+            : light;
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <main class="page-content">
+      <h1 class:list={{ 'page-title': true, 'page-title--center': centerTitle }}>{pageTitle}</h1>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .page-content {
+    flex: 1;
+  }
+
+  .page-title {
+    width: 100%;
+    max-width: 1100px;
+    margin: 1.25rem auto 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .page-title--center {
+    text-align: center;
+  }
+
+  @media (min-width: 641px) {
+    .page-title {
+      margin-top: 1.6rem;
+      padding: 0 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .page-title {
+      margin-top: 2rem;
+      padding: 0 1.5rem;
+    }
+  }
+</style>

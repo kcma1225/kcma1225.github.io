@@ -1,63 +1,339 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Icon } from 'astro-icon/components';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`About — ${SITE_TITLE}`} description="Get to know the person behind this blog." />
+  </head>
+  <body>
+    <Header />
+    <main>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+      <!-- ── Hero ─────────────────────────────────────────── -->
+      <section class="about-hero">
+        <div class="avatar">FM</div>
+        <div class="hero-text">
+          <h1 class="hero-name">FenMin</h1>
+          <p class="hero-role">Software Engineer &amp; Writer</p>
+          <p class="hero-tagline">
+            I build things for the web, think too much about system design,<br />
+            and occasionally write about what I learn.
+          </p>
+          <div class="hero-links">
+            <a href="https://github.com/" target="_blank" rel="noopener" class="hero-link">
+              <Icon name="lucide:github" width={16} height={16} />
+              GitHub
+            </a>
+            <a href="/blog" class="hero-link">
+              <Icon name="lucide:book-open" width={16} height={16} />
+              Blog
+            </a>
+            <a href="mailto:you@example.com" class="hero-link">
+              <Icon name="lucide:mail" width={16} height={16} />
+              Email
+            </a>
+          </div>
+        </div>
+      </section>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+      <div class="about-body">
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+        <!-- ── About Me ──────────────────────────────────── -->
+        <section class="about-section">
+          <h2 class="section-heading">
+            <Icon name="lucide:user" width={16} height={16} />
+            About Me
+          </h2>
+          <div class="prose">
+            <p>
+              Hi — I'm FenMin. I'm a software engineer with a passion for backend systems,
+              distributed architecture, and clean code. I started this blog as a way to
+              document what I learn and share ideas that I think are worth reading.
+            </p>
+            <p>
+              When I'm not coding, I'm usually reading, hiking, or brewing coffee badly.
+              I believe the best software is simple, predictable, and boring in the best
+              possible way.
+            </p>
+          </div>
+        </section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+        <!-- ── Tech Stack ─────────────────────────────────── -->
+        <section class="about-section">
+          <h2 class="section-heading">
+            <Icon name="lucide:cpu" width={16} height={16} />
+            Tech I Work With
+          </h2>
+          <div class="stack-grid">
+            {[
+              { label: 'Java', icon: 'lucide:coffee' },
+              { label: 'Spring Boot', icon: 'lucide:layers' },
+              { label: 'Go', icon: 'lucide:terminal' },
+              { label: 'Python', icon: 'lucide:code-2' },
+              { label: 'Kubernetes', icon: 'lucide:boxes' },
+              { label: 'PostgreSQL', icon: 'lucide:database' },
+              { label: 'Redis', icon: 'lucide:zap' },
+              { label: 'Docker', icon: 'lucide:container' },
+              { label: 'TypeScript', icon: 'lucide:file-code-2' },
+              { label: 'System Design', icon: 'lucide:network' },
+            ].map(({ label, icon }) => (
+              <span class="stack-chip">
+                <Icon name={icon} width={13} height={13} />
+                {label}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <!-- ── Currently ──────────────────────────────────── -->
+        <section class="about-section">
+          <h2 class="section-heading">
+            <Icon name="lucide:sparkles" width={16} height={16} />
+            Currently
+          </h2>
+          <ul class="currently-list">
+            <li>
+              <span class="dot dot--green"></span>
+              Working on microservices architecture and distributed transactions
+            </li>
+            <li>
+              <span class="dot dot--blue"></span>
+              Writing about Java, Spring Boot, and system design patterns
+            </li>
+            <li>
+              <span class="dot dot--purple"></span>
+              Learning more about Kubernetes internals and cloud-native patterns
+            </li>
+            <li>
+              <span class="dot dot--orange"></span>
+              Reading: <em>Designing Data-Intensive Applications</em>
+            </li>
+          </ul>
+        </section>
+
+        <!-- ── Quote ──────────────────────────────────────── -->
+        <blockquote class="about-quote">
+          "The art of programming is the art of organizing complexity."
+          <cite>— Edsger W. Dijkstra</cite>
+        </blockquote>
+
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ── Hero ────────────────────────────────────────────── */
+  .about-hero {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    max-width: 780px;
+    margin: 3.5rem auto 0;
+    padding: 0 1.5rem 3rem;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+
+  .avatar {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 24px rgba(var(--gray), 28%);
+    user-select: none;
+  }
+
+  .hero-name {
+    margin: 0 0 0.2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgb(var(--black));
+    line-height: 1.1;
+  }
+
+  .hero-role {
+    margin: 0 0 0.65rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent);
+  }
+
+  .hero-tagline {
+    margin: 0 0 1.25rem;
+    font-size: 0.975rem;
+    line-height: 1.65;
+    color: rgb(var(--gray-dark));
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem 0.9rem;
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 99px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(var(--gray-dark));
+    background: rgb(var(--surface));
+    transition: border-color 140ms, color 140ms;
+  }
+  .hero-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── Body sections ───────────────────────────────────── */
+  .about-body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+
+  .about-section {
+    margin-top: 3rem;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgb(var(--gray));
+  }
+
+  /* ── Prose ───────────────────────────────────────────── */
+  .prose p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgb(var(--gray-dark));
+  }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── Stack chips ─────────────────────────────────────── */
+  .stack-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .stack-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgb(var(--black));
+    background: rgba(var(--gray-light), 0.35);
+    transition: border-color 140ms, background 140ms;
+  }
+  .stack-chip:hover {
+    border-color: var(--accent);
+    background: rgba(var(--gray-light), 0.6);
+  }
+
+  /* ── Currently list ──────────────────────────────────── */
+  .currently-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .currently-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.975rem;
+    line-height: 1.6;
+    color: rgb(var(--gray-dark));
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.48rem;
+  }
+  .dot--green  { background: #22c55e; }
+  .dot--blue   { background: var(--accent); }
+  .dot--purple { background: #a855f7; }
+  .dot--orange { background: #f97316; }
+
+  /* ── Quote ───────────────────────────────────────────── */
+  .about-quote {
+    margin: 3.5rem 0 0;
+    padding: 1.5rem 1.75rem;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    background: rgba(var(--gray-light), 0.3);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgb(var(--gray-dark));
+  }
+  .about-quote cite {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.82rem;
+    font-style: normal;
+    color: rgb(var(--gray));
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .about-hero {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-top: 2rem;
+      padding: 0 1rem 2rem;
+    }
+    .avatar { width: 72px; height: 72px; font-size: 1.2rem; }
+    .hero-name { font-size: 1.6rem; }
+    .about-body { padding: 0 1rem 4rem; }
+  }
+</style>

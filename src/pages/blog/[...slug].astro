@@ -12,9 +12,61 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const { Content } = await render(post);
+const allPosts = await getCollection('blog');
+const sortedPosts = [...allPosts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const getDirectory = (id: string) => {
+	const segments = id.split('/');
+	if (segments.length <= 1) return '';
+	return segments.slice(0, -1).join('/');
+};
+
+const currentDirectory = getDirectory(post.id);
+
+const currentFolderName = currentDirectory ? currentDirectory.split('/').at(-1) ?? currentDirectory : 'blog';
+
+interface FolderTreeEntry {
+	type: 'folder' | 'post';
+	label: string;
+	depth: number;
+	slug?: string;
+}
+
+// Only show posts that live in the exact same folder (siblings only, no child-folders).
+const siblingPosts = allPosts
+	.filter((entry) => getDirectory(entry.id) === currentDirectory)
+	.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const folderTreeEntries: FolderTreeEntry[] = siblingPosts.map((entry) => ({
+	type: 'post',
+	label: entry.data.title,
+	depth: 1,
+	slug: entry.id,
+}));
+
+const currentPostIndex = sortedPosts.findIndex((entry) => entry.id === post.id);
+const previousPost =
+	currentPostIndex >= 0 && currentPostIndex < sortedPosts.length - 1
+		? {
+			title: sortedPosts[currentPostIndex + 1].data.title,
+			slug: sortedPosts[currentPostIndex + 1].id,
+		}
+		: undefined;
+
+const postTags = post.data.tags ?? [];
+
+const { Content, headings } = await render(post);
+const tocHeadings = headings.filter((heading) => heading.depth <= 3);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost
+	{...post.data}
+	currentFolderName={currentFolderName}
+	folderTreeEntries={folderTreeEntries}
+	currentSlug={post.id}
+	tocHeadings={tocHeadings}
+	tags={postTags}
+	previousPost={previousPost}
+>
 	<Content />
 </BlogPost>

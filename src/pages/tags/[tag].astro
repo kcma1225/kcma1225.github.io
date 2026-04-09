@@ -1,0 +1,29 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogListLayout from '../../layouts/BlogListLayout.astro';
+import { getTagsWithPosts, getTagSummaries } from '../../utils/tags';
+import type { TagSummary } from '../../utils/tags';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	const tags = getTagsWithPosts(posts);
+	const allTags = getTagSummaries(posts).sort((a, b) => b.count - a.count);
+
+	return tags.map((tag) => ({
+		params: { tag: tag.slug },
+		props: { tagName: tag.name, posts: tag.posts, currentTag: tag.slug, allTags },
+	}));
+}
+
+interface Props {
+	tagName: string;
+	posts: CollectionEntry<'blog'>[];
+	currentTag: string;
+	allTags: TagSummary[];
+}
+
+const { posts, currentTag, allTags } = Astro.props;
+const sortedPosts = [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BlogListLayout posts={sortedPosts} allTags={allTags} currentTag={currentTag} />

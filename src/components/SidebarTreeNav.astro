@@ -1,0 +1,228 @@
+---
+import type { TreeNode } from '../utils/tree';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  nodes: TreeNode[];
+  /** 0 = root level. Root folders start expanded; nested start collapsed. */
+  depth?: number;
+}
+
+const { nodes, depth = 0 } = Astro.props;
+---
+
+<ul class:list={['stree-list', depth === 0 ? 'stree-root' : 'stree-nested']}>
+  {nodes.map((node) => {
+    // Posts inside any folder are not shown in the sidebar tree.
+    // Only root-level posts (depth === 0) appear as direct links.
+    if (node.type === 'post' && depth > 0) return null;
+
+    return node.type === 'folder' ? (
+      <li class="stree-item stree-folder">
+        <div class="stree-row">
+          {/* Toggle expand/collapse — only when folder has sub-folders */}
+          {node.children.some(c => c.type === 'folder') ? (
+            <button
+              class="stree-toggle"
+              data-toggle
+              aria-expanded={depth === 0 ? 'true' : 'false'}
+              aria-label={`Toggle ${node.name}`}
+            >
+              <Icon name="lucide:chevron-right" width={13} height={13} class="stree-chevron" />
+            </button>
+          ) : (
+            <span class="stree-toggle-placeholder" />
+          )}
+
+          {/* Select this folder as the active filter */}
+          <button class="stree-select" data-filter={node.path}>
+            <Icon name="lucide:folder" width={13} height={13} class="stree-icon-folder" />
+            <span class="stree-name">{node.name}</span>
+            <span class="stree-count">{node.postCount}</span>
+          </button>
+        </div>
+
+        {/* Children — open by default at root level */}
+        {node.children.length > 0 && (
+          <div class:list={['stree-children', depth === 0 ? 'is-open' : '']}>
+            <Astro.self nodes={node.children} depth={depth + 1} />
+          </div>
+        )}
+      </li>
+    ) : (
+      <li class="stree-item stree-post">
+        <a class="stree-post-link" href={`/blog/${node.slug}/`}>
+          <Icon name="lucide:file-text" width={11} height={11} class="stree-icon-file" />
+          <span class="stree-post-name">{node.name}</span>
+        </a>
+      </li>
+    );
+  })}
+</ul>
+
+<style>
+  /* ── List resets ──────────────────────────────────────── */
+  .stree-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .stree-root {
+    padding: 0;
+  }
+
+  /* ── Children wrapper — JS toggles is-open on this div ─ */
+  .stree-children {
+    display: none; /* collapsed by default */
+  }
+  .stree-children.is-open {
+    display: block;
+  }
+
+  /* ── Nested ul (guide line + indent) ────────────────── */
+  .stree-nested {
+    padding-left: 0.85rem;
+    margin-left: 0.55rem;
+    border-left: 1.5px solid rgb(var(--gray-light));
+  }
+
+  .stree-item {
+    margin: 0.1rem 0;
+  }
+
+  /* ── Folder row ──────────────────────────────────────── */
+  .stree-row {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  /* Toggle button (chevron) */
+  .stree-toggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    color: rgb(var(--gray));
+    transition: background 120ms, color 120ms;
+  }
+  .stree-toggle:hover {
+    background: rgba(var(--gray-light), 0.9);
+    color: rgb(var(--black));
+  }
+
+  /* Spacer that maintains alignment for folders with no sub-folders */
+  .stree-toggle-placeholder {
+    flex-shrink: 0;
+    display: inline-block;
+    width: 21px; /* same as toggle button: icon 13px + padding 4px*2 */
+  }
+
+  /* Chevron rotates when folder is open */
+  .stree-chevron {
+    transition: transform 180ms ease;
+    display: block;
+  }
+  .stree-toggle[aria-expanded='true'] .stree-chevron {
+    transform: rotate(90deg);
+  }
+
+  /* Select-folder button */
+  .stree-select {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    padding: 0.32rem 0.45rem;
+    border-radius: 6px;
+    color: rgb(var(--gray-dark));
+    transition: background 120ms, color 120ms;
+    min-width: 0;
+  }
+  .stree-select:hover {
+    background: rgba(var(--gray-light), 0.8);
+    color: rgb(var(--black));
+  }
+  .stree-select.is-active {
+    color: var(--accent);
+    font-weight: 600;
+    background: rgba(var(--gray-light), 0.5);
+  }
+
+  /* Folder icon */
+  .stree-icon-folder {
+    flex-shrink: 0;
+    color: rgb(var(--gray));
+    transition: color 120ms;
+  }
+  .stree-select.is-active .stree-icon-folder {
+    color: var(--accent);
+  }
+
+  /* Folder name */
+  .stree-name {
+    flex: 1;
+    font-size: 0.84rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Post count badge */
+  .stree-count {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    color: rgb(var(--gray));
+    padding: 0.05rem 0.32rem;
+    background: rgba(var(--gray-light), 0.9);
+    border-radius: 99px;
+    line-height: 1.4;
+  }
+  .stree-select.is-active .stree-count {
+    color: var(--accent);
+    opacity: 0.8;
+    background: transparent;
+  }
+
+  /* ── Post row ────────────────────────────────────────── */
+  .stree-post-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.28rem 0.45rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: rgb(var(--gray));
+    transition: background 120ms, color 120ms;
+    min-width: 0;
+  }
+  .stree-post-link:hover {
+    background: rgba(var(--gray-light), 0.8);
+    color: rgb(var(--black));
+  }
+
+  .stree-icon-file {
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .stree-post-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

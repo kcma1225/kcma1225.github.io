@@ -1,0 +1,198 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import { Icon } from 'astro-icon/components';
+import type { CollectionEntry } from 'astro:content';
+
+interface FolderNode {
+  name: string;
+  subfolders: FolderNode[];
+  posts: CollectionEntry<'blog'>[];
+}
+
+interface Props {
+  folders: FolderNode[];
+  posts: CollectionEntry<'blog'>[];
+  depth?: number;
+}
+
+const { folders, posts, depth = 0 } = Astro.props;
+
+function countAll(node: FolderNode): number {
+  return node.posts.length + node.subfolders.reduce((s, f) => s + countAll(f), 0);
+}
+---
+
+<div class:list={['tree-section', depth === 0 ? 'tree-root' : 'tree-nested']}>
+  {folders.map((folder) => {
+    const total = countAll(folder);
+    return (
+      <details class:list={['tree-folder', `depth-${Math.min(depth, 2)}`]}>
+        <summary class="tree-summary">
+          <span class="folder-icons">
+            <Icon name="lucide:folder" class="icon-closed" width={16} height={16} />
+            <Icon name="lucide:folder-open" class="icon-open" width={16} height={16} />
+          </span>
+          <span class="tree-folder-name">{folder.name}</span>
+          <span class="tree-folder-count">{total} {total === 1 ? 'post' : 'posts'}</span>
+          <span class="tree-chevron-wrap">
+            <Icon name="lucide:chevron-right" width={14} height={14} />
+          </span>
+        </summary>
+        <div class="tree-folder-body">
+          <Astro.self
+            folders={folder.subfolders}
+            posts={folder.posts}
+            depth={depth + 1}
+          />
+        </div>
+      </details>
+    );
+  })}
+
+  {posts.map((post) => (
+    <a class="tree-post-link" href={`/blog/${post.id}/`}>
+      <span class="tree-post-main">
+        <span class="tree-post-title">{post.data.title}</span>
+        {post.data.description && (
+          <span class="tree-post-desc">{post.data.description}</span>
+        )}
+      </span>
+      <span class="tree-post-date">
+        <FormattedDate date={post.data.pubDate} />
+      </span>
+    </a>
+  ))}
+</div>
+
+<style>
+  /* ── Root section ─────────────────────────────────────── */
+  .tree-root {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  /* ── Nested section: indent + left accent bar ─────────── */
+  .tree-nested {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin: 0.2rem 0 0.4rem 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgb(var(--gray-light));
+  }
+
+  /* ── Folder block ─────────────────────────────────────── */
+  .tree-folder {
+    width: 100%;
+  }
+
+  .tree-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    transition: background-color 140ms ease;
+  }
+  .tree-summary::-webkit-details-marker { display: none; }
+  .tree-summary:hover { background: rgba(var(--gray-light), 0.7); }
+
+  /* Depth-0: top-level folder — biggest */
+  .depth-0 > .tree-summary {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: rgb(var(--black));
+  }
+
+  /* Depth-1+: nested folders */
+  .depth-1 > .tree-summary,
+  .depth-2 > .tree-summary {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgb(var(--gray-dark));
+  }
+
+  /* Folder icon open/close swap */
+  .folder-icons {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  details .icon-open { display: none; }
+  details[open] .icon-closed { display: none; }
+  details[open] .icon-open { display: inline-flex; }
+
+  .tree-folder-name { flex: 1; }
+
+  .tree-folder-count {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgb(var(--gray));
+    white-space: nowrap;
+  }
+
+  .tree-chevron-wrap {
+    display: inline-flex;
+    align-items: center;
+    color: rgb(var(--gray));
+    transition: transform 180ms ease;
+    flex-shrink: 0;
+  }
+  details[open] > .tree-summary .tree-chevron-wrap { transform: rotate(90deg); }
+
+  /* ── Post row ─────────────────────────────────────────── */
+  .tree-post-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 140ms ease;
+  }
+  .tree-post-link:hover { background: rgba(var(--gray-light), 0.7); }
+
+  .tree-post-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .tree-post-title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(var(--black));
+    line-height: 1.4;
+  }
+
+  .tree-post-desc {
+    font-size: 0.8rem;
+    color: rgb(var(--gray));
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tree-post-date {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: rgb(var(--gray));
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .tree-post-link { flex-direction: column; gap: 0.1rem; }
+    .tree-post-desc { white-space: normal; }
+    .tree-post-date { padding-top: 0; }
+  }
+</style>

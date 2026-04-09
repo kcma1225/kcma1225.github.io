@@ -6,81 +6,486 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+interface PreviousPost {
+title: string;
+slug: string;
+}
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+interface TocHeading {
+depth: number;
+slug: string;
+text: string;
+}
+
+type Props = CollectionEntry<'blog'>['data'] & {
+	currentFolderName?: string;
+	folderTreeEntries?: unknown[];
+	currentSlug?: string;
+tocHeadings?: TocHeading[];
+tags?: string[];
+previousPost?: PreviousPost;
+};
+
+const {
+title,
+description,
+author,
+pubDate,
+updatedDate,
+heroImage,
+tocHeadings = [],
+tags = [],
+previousPost,
+} = Astro.props;
+
+const displayAuthor = author ?? 'Unknown author';
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<head>
+<BaseHead title={title} description={description} />
+<style>
+main {
+width: 100%;
+max-width: 100%;
+margin: 0;
+flex: 1;
+}
+/* ── Full-width post header: title + hero ─────────────────── */
+.post-header {
+width: min(100%, 1100px);
+max-width: 1100px;
+box-sizing: border-box;
+margin: 0 auto;
+padding: 1.25rem 1rem 0.75rem;
+}
+.title {
+padding: 0;
+text-align: left;
+line-height: 1.2;
+}
+.title h1 {
+margin: 0;
+font-size: 36.4px;
+line-height: 1.14;
+max-width: 28ch;
+}
+.post-description {
+margin: 0.45rem 0 0;
+max-width: 44ch;
+font-size: 17px;
+line-height: 1.55;
+color: rgb(var(--gray-dark));
+}
+.post-top-tags {
+display: flex;
+flex-wrap: wrap;
+gap: 0.4rem;
+margin: 0.95rem 0 0.85rem;
+}
+.post-top-tag {
+display: inline-flex;
+align-items: center;
+padding: 0.16rem 0.45rem;
+border: 1px solid var(--sidebar-separator);
+border-radius: 999px;
+font-size: 0.66rem;
+letter-spacing: 0.03em;
+text-transform: uppercase;
+color: rgb(var(--gray));
+text-decoration: none;
+}
+.post-meta-row {
+display: flex;
+flex-wrap: wrap;
+gap: 1.5rem 3rem;
+margin-top: 0.15rem;
+}
+.post-meta-item {
+display: grid;
+gap: 0.2rem;
+}
+.post-meta-label {
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: rgb(var(--gray));
+}
+.post-meta-value {
+font-size: 1rem;
+color: rgb(var(--gray-dark));
+}
+.post-meta-value .last-updated-on {
+font-style: italic;
+font-size: 0.82rem;
+color: rgb(var(--gray));
+}
+.hero-image {
+width: 100%;
+margin: 1.4rem 0 0.75rem;
+}
+.hero-image img {
+display: block;
+margin: 0;
+border-radius: 12px;
+box-shadow: var(--box-shadow);
+max-width: 820px;
+width: 100%;
+height: auto;
+}
+/* ── Two-column grid: prose | right toc ───────────────────── */
+.content-grid {
+display: grid;
+grid-template-columns: minmax(0, 820px) 220px;
+gap: 2rem;
+width: min(100%, 1100px);
+max-width: 1100px;
+box-sizing: border-box;
+margin: 0 auto;
+padding: 0 1rem;
+}
+.right-sidebar {
+width: 220px;
+align-self: stretch;
+justify-self: end;
+}
+.sidebar-toc-outer {
+position: sticky;
+top: 80px;          /* sticks below the site header */
+max-height: calc(100vh - 80px - 2rem);
+overflow-y: auto;
+overflow-x: hidden;
+margin-left: auto;
+}
+:global(.sidebar-toc) {
+border-left: 1px solid var(--sidebar-separator);
+padding-left: 1rem;
+box-sizing: border-box;
+width: 100%;
+}
+:global(.sidebar-toc h2) {
+font-size: 0.86rem;
+font-weight: 600;
+margin: 0 0 0.45rem;
+color: rgb(var(--gray-dark));
+}
+:global(.sidebar-toc ul) {
+list-style: none;
+padding: 0;
+margin: 0;
+display: grid;
+gap: 0.18rem;
+}
+:global(.sidebar-toc li.toc-depth-2 a) {
+padding-left: 0.65rem;
+}
+:global(.sidebar-toc li.toc-depth-3 a) {
+padding-left: 1.2rem;
+}
+:global(.sidebar-toc a) {
+display: block;
+text-decoration: none;
+color: rgb(var(--gray));
+padding: 0.1rem 0.25rem;
+font-size: 0.84rem;
+line-height: 1.18;
+border-left: 2px solid transparent;
+transition: color 150ms ease, border-color 150ms ease;
+}
+:global(.sidebar-toc a:hover) {
+color: rgb(var(--gray-dark));
+border-left-color: rgb(var(--gray-light));
+}
+:global(.sidebar-toc a.is-active) {
+color: var(--sidebar-link-hover);
+border-left-color: var(--sidebar-link);
+background: rgba(29, 78, 137, 0.06);
+}
+.post-shell {
+width: 100%;
+min-width: 0;
+}
+:global(.prose) {
+width: 100%;
+margin: 0;
+padding: 0.25rem 0;
+color: rgb(var(--gray-dark));
+font-size: 17px;
+line-height: 1.72;
+}
+:global(.prose p),
+:global(.prose li),
+:global(.prose blockquote),
+:global(.prose code) {
+font-size: 17px;
+}
+:global(.prose h1) { font-size: 36.4px; margin-top: 2rem; line-height: 1.16; }
+:global(.prose h2) { font-size: 26.1px; margin-top: 1.8rem; line-height: 1.2; }
+:global(.prose h3) { font-size: 23.8964px; margin-top: 1.5rem; line-height: 1.2; }
+:global(.prose h4) { font-size: 21.25px; margin-top: 1.3rem; line-height: 1.22; }
+:global(.prose h5) { font-size: 18.7px; margin-top: 1.2rem; line-height: 1.25; }
+:global(.prose pre) { font-size: 0.88rem; }
+:global(.prose pre code) { font-size: 0.88rem; }
+.post-bottom-meta {
+margin-top: 2.25rem;
+padding-top: 1rem;
+border-top: 1px solid var(--sidebar-separator);
+display: grid;
+gap: 0.65rem;
+}
+.post-bottom-meta h2 {
+font-size: 0.7rem;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin: 0;
+color: var(--sidebar-folder);
+}
+.post-bottom-meta a {
+font-size: 0.95rem;
+text-decoration: none;
+color: var(--sidebar-link);
+}
+.post-bottom-meta a:hover {
+color: var(--sidebar-link-hover);
+}
+@media (max-width: 1200px) {
+.post-header {
+padding: 0 1rem;
+}
+.content-grid {
+grid-template-columns: 1fr;
+width: min(100%, 820px);
+max-width: 820px;
+padding: 0;
+}
+.right-sidebar {
+display: none;
+}
+.sidebar-toc-outer {
+position: static;
+top: auto;
+max-height: none;
+overflow-y: visible;
+margin-left: 0;
+}
+}
+@media (max-width: 640px) {
+.post-shell {
+overflow-x: hidden;
+}
+.prose {
+padding: 0.75rem 0;
+overflow-wrap: anywhere;
+}
+.hero-image {
+display: flex;
+justify-content: flex-start;
+}
+.prose > p:first-of-type {
+text-align: left;
+max-width: none;
+margin-left: 0;
+margin-right: 0;
+}
+}
+</style>
+</head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+<body>
+<Header />
+<main>
+
+	<!-- ── Full-width header: date + title + hero ───────────── -->
+	<div class="post-header">
+		<div class="title">
+			<h1>{title}</h1>
+			{description && <p class="post-description">{description}</p>}
+			{tags.length > 0 && (
+				<div class="post-top-tags">
+					{tags.map((tag) => (
+						<a class="post-top-tag" href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`}>
+							{tag}
+						</a>
+					))}
 				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+			)}
+			<div class="post-meta-row">
+				<div class="post-meta-item">
+					<div class="post-meta-label">Author</div>
+					<div class="post-meta-value">{displayAuthor}</div>
+				</div>
+				<div class="post-meta-item">
+					<div class="post-meta-label">Published</div>
+					<div class="post-meta-value">
+						<FormattedDate date={pubDate} />
+						{updatedDate && <div class="last-updated-on">Last updated on <FormattedDate date={updatedDate} /></div>}
 					</div>
+				</div>
+			</div>
+			<hr />
+		</div>
+		{heroImage && (
+			<div class="hero-image">
+				<Image width={1020} height={510} src={heroImage as ImageMetadata} alt="" />
+			</div>
+		)}
+	</div>
+
+	<article class="content-grid">
+
+	<div class="post-shell">
+				<div class="prose">
 					<slot />
 				</div>
+				{previousPost && (
+					<section class="post-bottom-meta">
+						<h2>Previous article</h2>
+						<a href={`/blog/${previousPost.slug}/`}>{previousPost.title}</a>
+					</section>
+				)}
+			</div>
+
+			<aside class="right-sidebar" aria-label="Table of contents">
+				<div id="sidebar-toc-mount" class="sidebar-toc-outer"></div>
+			</aside>
+
 			</article>
-		</main>
-		<Footer />
-	</body>
+	</main>
+
+<script is:inline define:vars={{ tocHeadings }}>
+(() => {
+const mount = document.getElementById('sidebar-toc-mount');
+if (!mount || !Array.isArray(tocHeadings) || tocHeadings.length === 0) return;
+
+const activeClass = 'is-active';
+const tocLinks = new Map();
+let activeSlug = '';
+let observer = null;
+
+const buildToc = () => {
+const section = document.createElement('section');
+section.className = 'sidebar-toc';
+const h = document.createElement('h2');
+h.textContent = 'On this page';
+section.appendChild(h);
+const ul = document.createElement('ul');
+for (const heading of tocHeadings) {
+const li = document.createElement('li');
+li.className = `toc-depth-${heading.depth}`;
+const a = document.createElement('a');
+a.href = `#${heading.slug}`;
+a.textContent = heading.text;
+tocLinks.set(heading.slug, a);
+li.appendChild(a);
+ul.appendChild(li);
+}
+section.appendChild(ul);
+mount.appendChild(section);
+};
+
+const setActiveSlug = (slug) => {
+if (!slug || slug === activeSlug) return;
+if (activeSlug) {
+const previous = tocLinks.get(activeSlug);
+if (previous) previous.classList.remove(activeClass);
+}
+const next = tocLinks.get(slug);
+if (next) {
+next.classList.add(activeClass);
+activeSlug = slug;
+}
+};
+
+const getInitialSlug = () => {
+const topOffset = 96;
+let current = tocHeadings[0]?.slug ?? '';
+
+for (const heading of tocHeadings) {
+const element = document.getElementById(heading.slug);
+if (!(element instanceof HTMLElement)) continue;
+const rect = element.getBoundingClientRect();
+if (rect.top - topOffset <= 0) {
+current = heading.slug;
+} else {
+break;
+}
+}
+
+return current;
+};
+
+const sync = () => {
+if (window.innerWidth > 1200) {
+if (!mount.firstChild) buildToc();
+
+if (observer) return;
+
+const headingElements = tocHeadings
+	.map((heading) => document.getElementById(heading.slug))
+	.filter((element) => element instanceof HTMLElement);
+
+if (headingElements.length === 0) return;
+
+setActiveSlug(getInitialSlug());
+
+if (!('IntersectionObserver' in window)) return;
+
+const visibleHeadings = new Set();
+
+observer = new IntersectionObserver(
+	(entries) => {
+		let shouldUpdate = false;
+
+		for (const entry of entries) {
+			const target = entry.target;
+			if (!(target instanceof HTMLElement)) continue;
+
+			if (entry.isIntersecting) {
+				visibleHeadings.add(target.id);
+				shouldUpdate = true;
+			} else if (visibleHeadings.delete(target.id)) {
+				shouldUpdate = true;
+			}
+		}
+
+		if (!shouldUpdate || visibleHeadings.size === 0) return;
+
+		const topOffset = 96;
+		const activeHeading = [...visibleHeadings]
+			.map((slug) => document.getElementById(slug))
+			.filter((element) => element instanceof HTMLElement)
+			.sort((a, b) => Math.abs(a.getBoundingClientRect().top - topOffset) - Math.abs(b.getBoundingClientRect().top - topOffset))[0];
+
+		if (activeHeading) setActiveSlug(activeHeading.id);
+	},
+	{
+		root: null,
+		rootMargin: '-96px 0px -55% 0px',
+		threshold: 0,
+	}
+);
+
+for (const headingElement of headingElements) {
+	observer.observe(headingElement);
+}
+} else {
+if (observer) {
+	observer.disconnect();
+	observer = null;
+}
+mount.innerHTML = '';
+tocLinks.clear();
+activeSlug = '';
+}
+};
+
+sync();
+window.addEventListener('resize', sync);
+})();
+</script>
+
+<Footer />
+</body>
 </html>

@@ -4,6 +4,14 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 :root {
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
@@ -12,29 +20,50 @@
 	--gray-light: 229, 233, 240;
 	--gray-dark: 34, 41, 57;
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--surface: 255, 255, 255;
+	--sidebar-title: #1f2937;
+	--sidebar-folder: #475569;
+	--sidebar-link: #1d4e89;
+	--sidebar-link-hover: #163a6b;
+	--sidebar-active-bg: #e7eff8;
+	--sidebar-active-border: #1d4e89;
+	--sidebar-separator: #dbe3ee;
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
 		rgba(var(--gray), 33%);
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+
+:root[data-theme='dark'] {
+	--accent: #8da2ff;
+	--accent-dark: #c5d0ff;
+	--black: 241, 245, 249;
+	--gray: 148, 163, 184;
+	--gray-light: 51, 65, 85;
+	--gray-dark: 226, 232, 240;
+	--gray-gradient: rgb(2, 6, 23), rgb(2, 6, 23);
+	--surface: 2, 6, 23;
+	--sidebar-title: #e2e8f0;
+	--sidebar-folder: #9aa8bd;
+	--sidebar-link: #93b7df;
+	--sidebar-link-hover: #c3d8ee;
+	--sidebar-active-bg: #0f253a;
+	--sidebar-active-border: #93b7df;
+	--sidebar-separator: #334155;
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+
+html {
+	color-scheme: light;
+}
+
+html[data-theme='dark'] {
+	color-scheme: dark;
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: 'Source Sans 3', 'Noto Sans TC', '微軟正黑體', 'Arial', sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
+	background-color: rgb(var(--surface));
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
 	background-size: 100% 600px;
 	word-wrap: break-word;
@@ -42,7 +71,16 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
+	display: flex;
+	flex-direction: column;
+	min-height: 100dvh;
 }
+
+html[data-theme='dark'] body {
+	background: rgb(var(--surface));
+	background-image: none;
+}
+
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);

@@ -1,0 +1,14 @@
+---
+import BlogListLayout from '../layouts/BlogListLayout.astro';
+import { getCollection } from 'astro:content';
+import { buildTree } from '../utils/tree';
+
+const allPosts = await getCollection('blog');
+
+// Sort all posts by date (newest first) for the flat main list
+const sorted = [...allPosts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Build recursive folder tree for the sidebar
+const tree = buildTree(allPosts);
+---
+<BlogListLayout tree={tree} allPosts={sorted} />
