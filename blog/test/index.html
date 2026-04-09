@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script>
+	(() => {
+		const storageKey = 'theme';
+		const dark = 'dark';
+		const light = 'light';
+		const system = 'system';
+		let setting = system;
+
+		try {
+			const savedTheme = localStorage.getItem(storageKey);
+			if (savedTheme === dark || savedTheme === light || savedTheme === system) {
+				setting = savedTheme;
+			}
+		} catch {}
+
+		const theme =
+			setting === dark || (setting === system && window.matchMedia('(prefers-color-scheme: dark)').matches)
+				? dark
+				: light;
+
+		document.documentElement.setAttribute('data-theme', theme);
+	})();
+</script><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="FenMin Blog" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.18.0"><!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/test/"><!-- Primary Meta Tags --><title>test</title><meta name="title" content="test"><meta name="description" content="This is the first post of my new Astro blog."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/test/"><meta property="og:title" content="test"><meta property="og:description" content="This is the first post of my new Astro blog."><meta property="og:image" content="https://example.com/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/test/"><meta property="twitter:title" content="test"><meta property="twitter:description" content="This is the first post of my new Astro blog."><meta property="twitter:image" content="https://example.com/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><style>@import"https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap";*,*:before,*:after{box-sizing:border-box}:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--surface: 255, 255, 255;--sidebar-title: #1f2937;--sidebar-folder: #475569;--sidebar-link: #1d4e89;--sidebar-link-hover: #163a6b;--sidebar-active-bg: #e7eff8;--sidebar-active-border: #1d4e89;--sidebar-separator: #dbe3ee;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}:root[data-theme=dark]{--accent: #8da2ff;--accent-dark: #c5d0ff;--black: 241, 245, 249;--gray: 148, 163, 184;--gray-light: 51, 65, 85;--gray-dark: 226, 232, 240;--gray-gradient: rgb(2, 6, 23), rgb(2, 6, 23);--surface: 2, 6, 23;--sidebar-title: #e2e8f0;--sidebar-folder: #9aa8bd;--sidebar-link: #93b7df;--sidebar-link-hover: #c3d8ee;--sidebar-active-bg: #0f253a;--sidebar-active-border: #93b7df;--sidebar-separator: #334155}html{color-scheme:light}html[data-theme=dark]{color-scheme:dark}body{font-family:"Source Sans 3",Noto Sans TC,微軟正黑體,Arial,sans-serif;margin:0;padding:0;text-align:left;background-color:rgb(var(--surface));background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));font-size:20px;line-height:1.7;display:flex;flex-direction:column;min-height:100dvh}html[data-theme=dark] body{background:rgb(var(--surface));background-image:none}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a,a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media(max-width:720px){body{font-size:18px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/_astro/blog.Cq155eG3.css">
+<link rel="stylesheet" href="/_astro/_slug_.DHsU_1jB.css">
+<style>a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}
+</style></head> <body data-astro-cid-bvzihdzo> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="header-shell" data-astro-cid-3ef6ksr2> <nav class="site-nav" data-astro-cid-3ef6ksr2> <a class="brand" href="/" data-astro-cid-3ef6ksr2> <img src="/logo.webp" alt="FenMin Blog logo" width="28" height="28" loading="eager" decoding="async" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2>FenMin Blog</span> </a> <div class="right-controls" data-astro-cid-3ef6ksr2> <div class="internal-links" aria-label="Pages" data-astro-cid-3ef6ksr2> <a href="/blog" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Tags </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a>  </div> <div class="nav-actions" data-astro-cid-3ef6ksr2> <div class="theme-dropdown" data-theme-dropdown data-astro-cid-3ef6ksr2> <button class="theme-toggle" type="button" aria-label="Select theme" aria-haspopup="true" aria-expanded="false" data-astro-cid-3ef6ksr2> <svg width="16" height="16" class="theme-toggle__icon theme-toggle__icon--system" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:monitor">   <symbol id="ai:lucide:monitor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8m-4-4v4"/></g></symbol><use href="#ai:lucide:monitor"></use>  </svg> <svg width="16" height="16" class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:sun">   <symbol id="ai:lucide:sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g></symbol><use href="#ai:lucide:sun"></use>  </svg> <svg width="16" height="16" class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:moon">   <symbol id="ai:lucide:moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><use href="#ai:lucide:moon"></use>  </svg> </button> <div class="theme-menu" role="menu" aria-label="Theme selector" data-astro-cid-3ef6ksr2> <button class="theme-option" type="button" role="menuitemradio" data-theme-option="light" data-astro-cid-3ef6ksr2> <svg width="16" height="16" viewBox="0 0 24 24" class="theme-option__icon" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:sun">   <use href="#ai:lucide:sun"></use>  </svg> <span data-astro-cid-3ef6ksr2>Light</span> </button> <button class="theme-option" type="button" role="menuitemradio" data-theme-option="dark" data-astro-cid-3ef6ksr2> <svg width="16" height="16" viewBox="0 0 24 24" class="theme-option__icon" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:moon">   <use href="#ai:lucide:moon"></use>  </svg> <span data-astro-cid-3ef6ksr2>Dark</span> </button> <button class="theme-option" type="button" role="menuitemradio" data-theme-option="system" data-astro-cid-3ef6ksr2> <svg width="16" height="16" viewBox="0 0 24 24" class="theme-option__icon" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:monitor">   <use href="#ai:lucide:monitor"></use>  </svg> <span data-astro-cid-3ef6ksr2>System</span> </button> </div> </div> </div> </div> </nav> </div> </header> <script>
+	(() => {
+		const storageKey = 'theme';
+		const dark = 'dark';
+		const light = 'light';
+		const system = 'system';
+
+		const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? dark : light);
+
+		const resolveTheme = (setting) => {
+			if (setting === dark || setting === light) return setting;
+			return getSystemTheme();
+		};
+
+		const getStoredSetting = () => {
+			const saved = localStorage.getItem(storageKey);
+			if (saved === dark || saved === light || saved === system) return saved;
+			return system;
+		};
+
+		const setTheme = (setting) => {
+			const theme = resolveTheme(setting);
+			document.documentElement.setAttribute('data-theme', theme);
+
+			const toggle = document.querySelector('.theme-toggle');
+			if (toggle instanceof HTMLButtonElement) {
+				toggle.dataset.themeSetting = setting;
+			}
+
+			document.querySelectorAll('.theme-option').forEach((element) => {
+				if (!(element instanceof HTMLButtonElement)) return;
+				const active = element.dataset.themeOption === setting;
+				element.setAttribute('aria-checked', String(active));
+				element.classList.toggle('is-active', active);
+			});
+		};
+
+		const dropdown = document.querySelector('[data-theme-dropdown]');
+		if (!(dropdown instanceof HTMLElement)) return;
+
+		const toggleButton = dropdown.querySelector('.theme-toggle');
+		const menu = dropdown.querySelector('.theme-menu');
+		if (!(toggleButton instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+
+		const openMenu = () => {
+			dropdown.classList.add('is-open');
+			toggleButton.setAttribute('aria-expanded', 'true');
+		};
+
+		const closeMenu = () => {
+			dropdown.classList.remove('is-open');
+			toggleButton.setAttribute('aria-expanded', 'false');
+		};
+
+		setTheme(getStoredSetting());
+
+		toggleButton.addEventListener('click', () => {
+			if (dropdown.classList.contains('is-open')) {
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		});
+
+		document.addEventListener('click', (event) => {
+			if (!dropdown.contains(event.target)) {
+				closeMenu();
+			}
+		});
+
+		menu.querySelectorAll('.theme-option').forEach((element) => {
+			if (!(element instanceof HTMLButtonElement)) return;
+			element.addEventListener('click', () => {
+				const setting = element.dataset.themeOption;
+				if (setting !== light && setting !== dark && setting !== system) return;
+				localStorage.setItem(storageKey, setting);
+				setTheme(setting);
+				closeMenu();
+			});
+		});
+
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+			if (getStoredSetting() === system) {
+				setTheme(system);
+			}
+		});
+	})();
+</script>  <main data-astro-cid-bvzihdzo> <!-- ── Full-width header: date + title + hero ───────────── --> <div class="post-header" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>test</h1> <p class="post-description" data-astro-cid-bvzihdzo>This is the first post of my new Astro blog.</p> <div class="post-top-tags" data-astro-cid-bvzihdzo> <a class="post-top-tag" href="/tags/astro/" data-astro-cid-bvzihdzo> astro </a><a class="post-top-tag" href="/tags/blogging/" data-astro-cid-bvzihdzo> blogging </a><a class="post-top-tag" href="/tags/learning-in-public/" data-astro-cid-bvzihdzo> learning in public </a> </div> <div class="post-meta-row" data-astro-cid-bvzihdzo> <div class="post-meta-item" data-astro-cid-bvzihdzo> <div class="post-meta-label" data-astro-cid-bvzihdzo>Author</div> <div class="post-meta-value" data-astro-cid-bvzihdzo>Astro Learner</div> </div> <div class="post-meta-item" data-astro-cid-bvzihdzo> <div class="post-meta-label" data-astro-cid-bvzihdzo>Published</div> <div class="post-meta-value" data-astro-cid-bvzihdzo> <time datetime="2026-03-01T00:00:00.000Z"> Mar 1, 2026 </time>  </div> </div> </div> <hr data-astro-cid-bvzihdzo> </div>  </div> <article class="content-grid" data-astro-cid-bvzihdzo> <div class="post-shell" data-astro-cid-bvzihdzo> <div class="prose" data-astro-cid-bvzihdzo>  <h1 id="my-first-blog-post">My First Blog Post</h1>
+<h1 id="測試測試">測試測試</h1>
+<h1 id=""></h1>
+<p>Published on: 2022-07-01</p>
+<p>Welcome to my <em>new blog</em> about learning Astro! Here, I will share my learning journey as I build a new website.</p>
+<h2 id="what-ive-accomplished">What I’ve accomplished</h2>
+<ol>
+<li>
+<p><strong>Installing Astro</strong>: First, I created a new Astro project and set up my online accounts.</p>
+</li>
+<li>
+<p><strong>Making Pages</strong>: I then learned how to make pages by creating new <code>.astro</code> files and placing them in the <code>src/pages/</code> folder.</p>
+</li>
+<li>
+<p><strong>Making Blog Posts</strong>: This is my first blog post! I now have Astro pages and Markdown posts!</p>
+</li>
+</ol>
+<h2 id="whats-next">What’s next</h2>
+<p>I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.</p>  </div> <section class="post-bottom-meta" data-astro-cid-bvzihdzo> <h2 data-astro-cid-bvzihdzo>Previous article</h2> <a href="/blog/test/test_test/" data-astro-cid-bvzihdzo>test_test</a> </section> </div> <aside class="right-sidebar" aria-label="Table of contents" data-astro-cid-bvzihdzo> <div id="sidebar-toc-mount" class="sidebar-toc-outer" data-astro-cid-bvzihdzo></div> </aside> </article> </main> <script>(function(){const tocHeadings = [{"depth":1,"slug":"my-first-blog-post","text":"My First Blog Post"},{"depth":1,"slug":"測試測試","text":"測試測試"},{"depth":1,"slug":"","text":""},{"depth":2,"slug":"what-ive-accomplished","text":"What I’ve accomplished"},{"depth":2,"slug":"whats-next","text":"What’s next"}];
+
+(() => {
+const mount = document.getElementById('sidebar-toc-mount');
+if (!mount || !Array.isArray(tocHeadings) || tocHeadings.length === 0) return;
+
+const activeClass = 'is-active';
+const tocLinks = new Map();
+let activeSlug = '';
+let observer = null;
+
+const buildToc = () => {
+const section = document.createElement('section');
+section.className = 'sidebar-toc';
+const h = document.createElement('h2');
+h.textContent = 'On this page';
+section.appendChild(h);
+const ul = document.createElement('ul');
+for (const heading of tocHeadings) {
+const li = document.createElement('li');
+li.className = `toc-depth-${heading.depth}`;
+const a = document.createElement('a');
+a.href = `#${heading.slug}`;
+a.textContent = heading.text;
+tocLinks.set(heading.slug, a);
+li.appendChild(a);
+ul.appendChild(li);
+}
+section.appendChild(ul);
+mount.appendChild(section);
+};
+
+const setActiveSlug = (slug) => {
+if (!slug || slug === activeSlug) return;
+if (activeSlug) {
+const previous = tocLinks.get(activeSlug);
+if (previous) previous.classList.remove(activeClass);
+}
+const next = tocLinks.get(slug);
+if (next) {
+next.classList.add(activeClass);
+activeSlug = slug;
+}
+};
+
+const getInitialSlug = () => {
+const topOffset = 96;
+let current = tocHeadings[0]?.slug ?? '';
+
+for (const heading of tocHeadings) {
+const element = document.getElementById(heading.slug);
+if (!(element instanceof HTMLElement)) continue;
+const rect = element.getBoundingClientRect();
+if (rect.top - topOffset <= 0) {
+current = heading.slug;
+} else {
+break;
+}
+}
+
+return current;
+};
+
+const sync = () => {
+if (window.innerWidth > 1200) {
+if (!mount.firstChild) buildToc();
+
+if (observer) return;
+
+const headingElements = tocHeadings
+	.map((heading) => document.getElementById(heading.slug))
+	.filter((element) => element instanceof HTMLElement);
+
+if (headingElements.length === 0) return;
+
+setActiveSlug(getInitialSlug());
+
+if (!('IntersectionObserver' in window)) return;
+
+const visibleHeadings = new Set();
+
+observer = new IntersectionObserver(
+	(entries) => {
+		let shouldUpdate = false;
+
+		for (const entry of entries) {
+			const target = entry.target;
+			if (!(target instanceof HTMLElement)) continue;
+
+			if (entry.isIntersecting) {
+				visibleHeadings.add(target.id);
+				shouldUpdate = true;
+			} else if (visibleHeadings.delete(target.id)) {
+				shouldUpdate = true;
+			}
+		}
+
+		if (!shouldUpdate || visibleHeadings.size === 0) return;
+
+		const topOffset = 96;
+		const activeHeading = [...visibleHeadings]
+			.map((slug) => document.getElementById(slug))
+			.filter((element) => element instanceof HTMLElement)
+			.sort((a, b) => Math.abs(a.getBoundingClientRect().top - topOffset) - Math.abs(b.getBoundingClientRect().top - topOffset))[0];
+
+		if (activeHeading) setActiveSlug(activeHeading.id);
+	},
+	{
+		root: null,
+		rootMargin: '-96px 0px -55% 0px',
+		threshold: 0,
+	}
+);
+
+for (const headingElement of headingElements) {
+	observer.observe(headingElement);
+}
+} else {
+if (observer) {
+	observer.disconnect();
+	observer = null;
+}
+mount.innerHTML = '';
+tocLinks.clear();
+activeSlug = '';
+}
+};
+
+sync();
+window.addEventListener('resize', sync);
+})();
+})();</script> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 Fen. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://instagram.com/fen_lz" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow fen on Instagram</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20" astro-icon="social/instagram" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.703.01 5.556 0 5.828 0 8c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.527.478.974.923 1.418.444.445.891.718 1.418.923.509.198 1.09.333 1.942.372C5.556 15.99 5.828 16 8 16c2.172 0 2.444-.01 3.297-.048.852-.04 1.433-.174 1.942-.372a3.93 3.93 0 0 0 1.418-.923 3.93 3.93 0 0 0 .923-1.418c.198-.509.333-1.09.372-1.942C15.99 10.444 16 10.172 16 8c0-2.172-.01-2.444-.048-3.297-.04-.852-.174-1.433-.372-1.942a3.93 3.93 0 0 0-.923-1.418A3.93 3.93 0 0 0 13.239.42c-.509-.198-1.09-.333-1.942-.372C10.444.01 10.172 0 8 0zm0 1.441c2.136 0 2.389.008 3.232.046.78.036 1.204.166 1.486.276.374.145.641.319.922.6.282.281.456.548.601.922.11.282.24.707.276 1.486.038.843.046 1.096.046 3.232s-.008 2.389-.046 3.232c-.036.78-.166 1.204-.276 1.486a2.49 2.49 0 0 1-.6.922 2.49 2.49 0 0 1-.923.601c-.282.11-.707.24-1.486.276-.843.038-1.096.046-3.232.046s-2.389-.008-3.232-.046c-.78-.036-1.204-.166-1.486-.276a2.49 2.49 0 0 1-.922-.6 2.49 2.49 0 0 1-.601-.923c-.11-.282-.24-.707-.276-1.486C1.449 10.39 1.441 10.136 1.441 8s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.374.319-.641.6-.922.281-.282.548-.456.922-.601.282-.11.707-.24 1.486-.276.843-.038 1.096-.046 3.232-.046zm0 2.454A4.105 4.105 0 1 0 8 12.105 4.105 4.105 0 0 0 8 3.895zm0 6.77A2.665 2.665 0 1 1 8 5.335a2.665 2.665 0 0 1 0 5.33zm4.27-7.845a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://www.linkedin.com/in/kai-chun-ma/" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Connect with fen on LinkedIn</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20" astro-icon="social/linkedin" data-astro-cid-sz7xmlte><path fill="currentColor" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 13.363V6.169H2.162v8.34h2.78zm-1.39-9.479c.969 0 1.572-.643 1.572-1.447-.018-.822-.603-1.447-1.554-1.447C2.62 2.136 2 2.761 2 3.583c0 .804.602 1.447 1.535 1.447h.018zm10.284 9.479v-4.65c0-2.49-1.328-3.648-3.099-3.648-1.429 0-2.068.788-2.426 1.341V6.169H5.53c.037.914 0 8.34 0 8.34h2.782v-4.658c0-.249.018-.498.091-.676.2-.498.658-1.014 1.426-1.014 1.006 0 1.408.765 1.408 1.887v4.461h2.78z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/kcma1225" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to fen's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

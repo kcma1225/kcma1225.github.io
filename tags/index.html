@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-gjphf53z> <head><meta charset="utf-8"><script>
+      (() => {
+        const storageKey = 'theme';
+        const dark = 'dark';
+        const light = 'light';
+        const system = 'system';
+        let setting = system;
+
+        try {
+          const savedTheme = localStorage.getItem(storageKey);
+          if (savedTheme === dark || savedTheme === light || savedTheme === system) {
+            setting = savedTheme;
+          }
+        } catch {}
+
+        const theme =
+          setting === dark || (setting === system && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            ? dark
+            : light;
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.18.0"><title>Tags</title><style>.page-content[data-astro-cid-gjphf53z]{flex:1}.page-title[data-astro-cid-gjphf53z]{width:100%;max-width:1100px;margin:1.25rem auto 0;padding:0 1rem;box-sizing:border-box}.page-title--center[data-astro-cid-gjphf53z]{text-align:center}@media(min-width:641px){.page-title[data-astro-cid-gjphf53z]{margin-top:1.6rem;padding:0 1.25rem}}@media(min-width:1024px){.page-title[data-astro-cid-gjphf53z]{margin-top:2rem;padding:0 1.5rem}}.tags-shell[data-astro-cid-os4i7owy]{width:min(860px,calc(100% - 2rem));margin:2rem auto 4rem}.empty-state[data-astro-cid-os4i7owy]{margin:0;color:rgb(var(--gray))}.tag-grid[data-astro-cid-os4i7owy]{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem}.tag-card[data-astro-cid-os4i7owy]{display:flex;flex-direction:column;gap:.5rem;padding:1.1rem 1.2rem 1rem;background:rgb(var(--surface));border:1px solid rgb(var(--gray-light));border-radius:12px;text-decoration:none;color:rgb(var(--gray-dark));transition:border-color .15s,box-shadow .15s,color .15s}.tag-card[data-astro-cid-os4i7owy]:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 4px 16px rgba(var(--gray),20%)}.tag-card-icon[data-astro-cid-os4i7owy]{display:flex;align-items:center;color:var(--accent);opacity:.8}.tag-card-name[data-astro-cid-os4i7owy]{font-size:1rem;font-weight:600;line-height:1.2;word-break:break-word}.tag-card-count[data-astro-cid-os4i7owy]{display:flex;align-items:center;gap:.3rem;margin-top:auto;font-size:.8rem;color:rgb(var(--gray))}.tag-card[data-astro-cid-os4i7owy]:hover .tag-card-count[data-astro-cid-os4i7owy]{color:var(--accent);opacity:.75}
+</style>
+<link rel="stylesheet" href="/_astro/blog.Cq155eG3.css">
+<style>@import"https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap";*,*:before,*:after{box-sizing:border-box}:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--surface: 255, 255, 255;--sidebar-title: #1f2937;--sidebar-folder: #475569;--sidebar-link: #1d4e89;--sidebar-link-hover: #163a6b;--sidebar-active-bg: #e7eff8;--sidebar-active-border: #1d4e89;--sidebar-separator: #dbe3ee;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}:root[data-theme=dark]{--accent: #8da2ff;--accent-dark: #c5d0ff;--black: 241, 245, 249;--gray: 148, 163, 184;--gray-light: 51, 65, 85;--gray-dark: 226, 232, 240;--gray-gradient: rgb(2, 6, 23), rgb(2, 6, 23);--surface: 2, 6, 23;--sidebar-title: #e2e8f0;--sidebar-folder: #9aa8bd;--sidebar-link: #93b7df;--sidebar-link-hover: #c3d8ee;--sidebar-active-bg: #0f253a;--sidebar-active-border: #93b7df;--sidebar-separator: #334155}html{color-scheme:light}html[data-theme=dark]{color-scheme:dark}body{font-family:"Source Sans 3",Noto Sans TC,微軟正黑體,Arial,sans-serif;margin:0;padding:0;text-align:left;background-color:rgb(var(--surface));background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));font-size:20px;line-height:1.7;display:flex;flex-direction:column;min-height:100dvh}html[data-theme=dark] body{background:rgb(var(--surface));background-image:none}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a,a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media(max-width:720px){body{font-size:18px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}
+a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}
+</style></head> <body data-astro-cid-gjphf53z> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="header-shell" data-astro-cid-3ef6ksr2> <nav class="site-nav" data-astro-cid-3ef6ksr2> <a class="brand" href="/" data-astro-cid-3ef6ksr2> <img src="/logo.webp" alt="FenMin Blog logo" width="28" height="28" loading="eager" decoding="async" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2>FenMin Blog</span> </a> <div class="right-controls" data-astro-cid-3ef6ksr2> <div class="internal-links" aria-label="Pages" data-astro-cid-3ef6ksr2> <a href="/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  <a href="/tags" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Tags </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a>  </div> <div class="nav-actions" data-astro-cid-3ef6ksr2> <div class="theme-dropdown" data-theme-dropdown data-astro-cid-3ef6ksr2> <button class="theme-toggle" type="button" aria-label="Select theme" aria-haspopup="true" aria-expanded="false" data-astro-cid-3ef6ksr2> <svg width="16" height="16" class="theme-toggle__icon theme-toggle__icon--system" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:monitor">   <symbol id="ai:lucide:monitor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8m-4-4v4"/></g></symbol><use href="#ai:lucide:monitor"></use>  </svg> <svg width="16" height="16" class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:sun">   <symbol id="ai:lucide:sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></g></symbol><use href="#ai:lucide:sun"></use>  </svg> <svg width="16" height="16" class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:moon">   <symbol id="ai:lucide:moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><use href="#ai:lucide:moon"></use>  </svg> </button> <div class="theme-menu" role="menu" aria-label="Theme selector" data-astro-cid-3ef6ksr2> <button class="theme-option" type="button" role="menuitemradio" data-theme-option="light" data-astro-cid-3ef6ksr2> <svg width="16" height="16" viewBox="0 0 24 24" class="theme-option__icon" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:sun">   <use href="#ai:lucide:sun"></use>  </svg> <span data-astro-cid-3ef6ksr2>Light</span> </button> <button class="theme-option" type="button" role="menuitemradio" data-theme-option="dark" data-astro-cid-3ef6ksr2> <svg width="16" height="16" viewBox="0 0 24 24" class="theme-option__icon" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:moon">   <use href="#ai:lucide:moon"></use>  </svg> <span data-astro-cid-3ef6ksr2>Dark</span> </button> <button class="theme-option" type="button" role="menuitemradio" data-theme-option="system" data-astro-cid-3ef6ksr2> <svg width="16" height="16" viewBox="0 0 24 24" class="theme-option__icon" aria-hidden="true" data-astro-cid-3ef6ksr2="true" data-icon="lucide:monitor">   <use href="#ai:lucide:monitor"></use>  </svg> <span data-astro-cid-3ef6ksr2>System</span> </button> </div> </div> </div> </div> </nav> </div> </header> <script>
+	(() => {
+		const storageKey = 'theme';
+		const dark = 'dark';
+		const light = 'light';
+		const system = 'system';
+
+		const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? dark : light);
+
+		const resolveTheme = (setting) => {
+			if (setting === dark || setting === light) return setting;
+			return getSystemTheme();
+		};
+
+		const getStoredSetting = () => {
+			const saved = localStorage.getItem(storageKey);
+			if (saved === dark || saved === light || saved === system) return saved;
+			return system;
+		};
+
+		const setTheme = (setting) => {
+			const theme = resolveTheme(setting);
+			document.documentElement.setAttribute('data-theme', theme);
+
+			const toggle = document.querySelector('.theme-toggle');
+			if (toggle instanceof HTMLButtonElement) {
+				toggle.dataset.themeSetting = setting;
+			}
+
+			document.querySelectorAll('.theme-option').forEach((element) => {
+				if (!(element instanceof HTMLButtonElement)) return;
+				const active = element.dataset.themeOption === setting;
+				element.setAttribute('aria-checked', String(active));
+				element.classList.toggle('is-active', active);
+			});
+		};
+
+		const dropdown = document.querySelector('[data-theme-dropdown]');
+		if (!(dropdown instanceof HTMLElement)) return;
+
+		const toggleButton = dropdown.querySelector('.theme-toggle');
+		const menu = dropdown.querySelector('.theme-menu');
+		if (!(toggleButton instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return;
+
+		const openMenu = () => {
+			dropdown.classList.add('is-open');
+			toggleButton.setAttribute('aria-expanded', 'true');
+		};
+
+		const closeMenu = () => {
+			dropdown.classList.remove('is-open');
+			toggleButton.setAttribute('aria-expanded', 'false');
+		};
+
+		setTheme(getStoredSetting());
+
+		toggleButton.addEventListener('click', () => {
+			if (dropdown.classList.contains('is-open')) {
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		});
+
+		document.addEventListener('click', (event) => {
+			if (!dropdown.contains(event.target)) {
+				closeMenu();
+			}
+		});
+
+		menu.querySelectorAll('.theme-option').forEach((element) => {
+			if (!(element instanceof HTMLButtonElement)) return;
+			element.addEventListener('click', () => {
+				const setting = element.dataset.themeOption;
+				if (setting !== light && setting !== dark && setting !== system) return;
+				localStorage.setItem(storageKey, setting);
+				setTheme(setting);
+				closeMenu();
+			});
+		});
+
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+			if (getStoredSetting() === system) {
+				setTheme(system);
+			}
+		});
+	})();
+</script>  <main class="page-content" data-astro-cid-gjphf53z> <h1 class="page-title page-title--center" data-astro-cid-gjphf53z>Tags</h1>  <section class="tags-shell" data-astro-cid-os4i7owy> <ul class="tag-grid" data-astro-cid-os4i7owy> <li data-astro-cid-os4i7owy> <a href="/tags/astro/" class="tag-card" data-astro-cid-os4i7owy> <span class="tag-card-icon" data-astro-cid-os4i7owy> <svg width="18" height="18" data-astro-cid-os4i7owy="true" data-icon="lucide:hash">   <symbol id="ai:lucide:hash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 9h16M4 15h16M10 3L8 21m8-18l-2 18"/></symbol><use href="#ai:lucide:hash"></use>  </svg> </span> <span class="tag-card-name" data-astro-cid-os4i7owy>astro</span> <span class="tag-card-count" data-astro-cid-os4i7owy> <svg width="12" height="12" data-astro-cid-os4i7owy="true" data-icon="lucide:file-text">   <symbol id="ai:lucide:file-text" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10 9H8m8 4H8m8 4H8"/></g></symbol><use href="#ai:lucide:file-text"></use>  </svg> 7 </span> </a> </li><li data-astro-cid-os4i7owy> <a href="/tags/blogging/" class="tag-card" data-astro-cid-os4i7owy> <span class="tag-card-icon" data-astro-cid-os4i7owy> <svg width="18" height="18" viewBox="0 0 24 24" data-astro-cid-os4i7owy="true" data-icon="lucide:hash">   <use href="#ai:lucide:hash"></use>  </svg> </span> <span class="tag-card-name" data-astro-cid-os4i7owy>blogging</span> <span class="tag-card-count" data-astro-cid-os4i7owy> <svg width="12" height="12" viewBox="0 0 24 24" data-astro-cid-os4i7owy="true" data-icon="lucide:file-text">   <use href="#ai:lucide:file-text"></use>  </svg> 6 </span> </a> </li><li data-astro-cid-os4i7owy> <a href="/tags/k8s/" class="tag-card" data-astro-cid-os4i7owy> <span class="tag-card-icon" data-astro-cid-os4i7owy> <svg width="18" height="18" viewBox="0 0 24 24" data-astro-cid-os4i7owy="true" data-icon="lucide:hash">   <use href="#ai:lucide:hash"></use>  </svg> </span> <span class="tag-card-name" data-astro-cid-os4i7owy>k8s</span> <span class="tag-card-count" data-astro-cid-os4i7owy> <svg width="12" height="12" viewBox="0 0 24 24" data-astro-cid-os4i7owy="true" data-icon="lucide:file-text">   <use href="#ai:lucide:file-text"></use>  </svg> 1 </span> </a> </li><li data-astro-cid-os4i7owy> <a href="/tags/learning-in-public/" class="tag-card" data-astro-cid-os4i7owy> <span class="tag-card-icon" data-astro-cid-os4i7owy> <svg width="18" height="18" viewBox="0 0 24 24" data-astro-cid-os4i7owy="true" data-icon="lucide:hash">   <use href="#ai:lucide:hash"></use>  </svg> </span> <span class="tag-card-name" data-astro-cid-os4i7owy>learning in public</span> <span class="tag-card-count" data-astro-cid-os4i7owy> <svg width="12" height="12" viewBox="0 0 24 24" data-astro-cid-os4i7owy="true" data-icon="lucide:file-text">   <use href="#ai:lucide:file-text"></use>  </svg> 7 </span> </a> </li> </ul> </section>  </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2026 Fen. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://instagram.com/fen_lz" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow fen on Instagram</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20" astro-icon="social/instagram" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.703.01 5.556 0 5.828 0 8c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.527.478.974.923 1.418.444.445.891.718 1.418.923.509.198 1.09.333 1.942.372C5.556 15.99 5.828 16 8 16c2.172 0 2.444-.01 3.297-.048.852-.04 1.433-.174 1.942-.372a3.93 3.93 0 0 0 1.418-.923 3.93 3.93 0 0 0 .923-1.418c.198-.509.333-1.09.372-1.942C15.99 10.444 16 10.172 16 8c0-2.172-.01-2.444-.048-3.297-.04-.852-.174-1.433-.372-1.942a3.93 3.93 0 0 0-.923-1.418A3.93 3.93 0 0 0 13.239.42c-.509-.198-1.09-.333-1.942-.372C10.444.01 10.172 0 8 0zm0 1.441c2.136 0 2.389.008 3.232.046.78.036 1.204.166 1.486.276.374.145.641.319.922.6.282.281.456.548.601.922.11.282.24.707.276 1.486.038.843.046 1.096.046 3.232s-.008 2.389-.046 3.232c-.036.78-.166 1.204-.276 1.486a2.49 2.49 0 0 1-.6.922 2.49 2.49 0 0 1-.923.601c-.282.11-.707.24-1.486.276-.843.038-1.096.046-3.232.046s-2.389-.008-3.232-.046c-.78-.036-1.204-.166-1.486-.276a2.49 2.49 0 0 1-.922-.6 2.49 2.49 0 0 1-.601-.923c-.11-.282-.24-.707-.276-1.486C1.449 10.39 1.441 10.136 1.441 8s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.374.319-.641.6-.922.281-.282.548-.456.922-.601.282-.11.707-.24 1.486-.276.843-.038 1.096-.046 3.232-.046zm0 2.454A4.105 4.105 0 1 0 8 12.105 4.105 4.105 0 0 0 8 3.895zm0 6.77A2.665 2.665 0 1 1 8 5.335a2.665 2.665 0 0 1 0 5.33zm4.27-7.845a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://www.linkedin.com/in/kai-chun-ma/" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Connect with fen on LinkedIn</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20" astro-icon="social/linkedin" data-astro-cid-sz7xmlte><path fill="currentColor" d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 13.363V6.169H2.162v8.34h2.78zm-1.39-9.479c.969 0 1.572-.643 1.572-1.447-.018-.822-.603-1.447-1.554-1.447C2.62 2.136 2 2.761 2 3.583c0 .804.602 1.447 1.535 1.447h.018zm10.284 9.479v-4.65c0-2.49-1.328-3.648-3.099-3.648-1.429 0-2.068.788-2.426 1.341V6.169H5.53c.037.914 0 8.34 0 8.34h2.782v-4.658c0-.249.018-.498.091-.676.2-.498.658-1.014 1.426-1.014 1.006 0 1.408.765 1.408 1.887v4.461h2.78z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/kcma1225" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to fen's GitHub</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html> 
